@@ -2,7 +2,7 @@ from telebot.types import ReactionTypeEmoji
 import random
 import telebot
 from bot_logic import flip_coin, gen_pass
-TOKEN = "Write yiur TOKEN"
+TOKEN = "Write your TOKEN"
 bot = telebot.TeleBot(TOKEN)
 
     
@@ -43,3 +43,4 @@ def get_reactions(message):
 bot.infinity_polling(allowed_updates=['message', 'message_reaction'])
 
 bot.polling()
+
