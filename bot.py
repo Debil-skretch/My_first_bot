@@ -36,7 +36,7 @@ def send_help(message):
 @bot.message_handler(commands=['mem'])
 def send_mem(message):
     img_name = random.choice(os.listdir('animal_images'))
-    with open(f'images/{img_name}', 'rb') as f:  
+    with open(f'animal_images/{img_name}', 'rb') as f:  
         bot.send_photo(message.chat.id, f)  
 
 @bot.message_handler(commands=['God of War'])
@@ -69,6 +69,7 @@ def get_reactions(message):
 bot.infinity_polling(allowed_updates=['message', 'message_reaction'])
 
 bot.polling()
+
 
 
 
