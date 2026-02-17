@@ -4,7 +4,7 @@ import random
 import os
 import telebot
 from bot_logic import flip_coin, gen_pass
-TOKEN = "8573001103:AAFIRmxFQYi0Tuk7JPG8D1ln0U1mW13STag"
+TOKEN = 
 bot = telebot.TeleBot(TOKEN)
 
     
@@ -80,6 +80,7 @@ def get_reactions(message):
 bot.infinity_polling(allowed_updates=['message', 'message_reaction'])
 
 bot.polling()
+
 
 
 
