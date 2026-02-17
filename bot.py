@@ -4,7 +4,7 @@ import random
 import os
 import telebot
 from bot_logic import flip_coin, gen_pass
-TOKEN = 
+TOKEN = "It's mine"
 bot = telebot.TeleBot(TOKEN)
 
     
@@ -31,18 +31,18 @@ def send_coin(message):
 
 @bot.message_handler(commands=['help'])
 def send_help(message):
-    bot.reply_to(message, "/start - нужна для того чтобы начать,/hello - нужна если хочешь поздоровоться с ботом,/bye - нужна если хочешь попрощаться с ботом,/password- нужна если хочешь сгенирировать рандомный парольиз 10 символов,/coin - нужна для того чтобы подбросить монетку")
+    bot.reply_to(message, "/start - нужна для того чтобы начать,/hello - нужна если хочешь поздоровоться с ботом,/bye - нужна если хочешь попрощаться с ботом,/password- нужна если хочешь сгенирировать рандомный парольиз 10 символов,/coin - нужна для того чтобы подбросить монетку,/mem - эта команда выдет один мем про програмистов,/God of War - эта команда выдает один мем про God of War,/duck - эта команда перекидывает на сайт с крутыми утками.")
 
 @bot.message_handler(commands=['mem'])
 def send_mem(message):
-    img_name = random.choice(os.listdir('animal_images'))
-    with open(f'animal_images/{img_name}', 'rb') as f:  
+    img_name = random.choice(os.listdir('images'))
+    with open(f'images/{img_name}', 'rb') as f:  
         bot.send_photo(message.chat.id, f)  
 
 @bot.message_handler(commands=['God of War'])
 def send_mem(message):
-    img_name = random.choice(os.listdir('images'))
-    with open(f'images/{img_name}', 'rb') as f:  
+    img_name = random.choice(os.listdir('animal_images'))
+    with open(f'animal_images/{img_name}', 'rb') as f:  
         bot.send_photo(message.chat.id, f)        
 
 def get_duck_image_url():    
@@ -69,9 +69,6 @@ def get_reactions(message):
 bot.infinity_polling(allowed_updates=['message', 'message_reaction'])
 
 bot.polling()
-
-
-
 
 
 
