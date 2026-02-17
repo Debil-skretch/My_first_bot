@@ -1,8 +1,10 @@
+import requests
 from telebot.types import ReactionTypeEmoji
 import random
+import os
 import telebot
 from bot_logic import flip_coin, gen_pass
-TOKEN = "Write your TOKEN"
+TOKEN = "8573001103:AAFIRmxFQYi0Tuk7JPG8D1ln0U1mW13STag"
 bot = telebot.TeleBot(TOKEN)
 
     
@@ -29,7 +31,31 @@ def send_coin(message):
 
 @bot.message_handler(commands=['help'])
 def send_help(message):
-    bot.reply_to(message, "/start - нужна для того чтобы начать,/hello - нужна если хочешь поздоровоться с ботом,/bye - нужна если хочешь попрощаться с ботом,password- нужна если хочешь сгенирировать рандомный парольиз 10 символов")
+    bot.reply_to(message, "/start - нужна для того чтобы начать,/hello - нужна если хочешь поздоровоться с ботом,/bye - нужна если хочешь попрощаться с ботом,/password- нужна если хочешь сгенирировать рандомный парольиз 10 символов,/coin - нужна для того чтобы подбросить монетку")
+
+@bot.message_handler(commands=['mem'])
+def send_mem(message):
+    img_name = random.choice(os.listdir('animal_images'))
+    with open(f'images/{img_name}', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)  
+
+@bot.message_handler(commands=['God of War'])
+def send_mem(message):
+    img_name = random.choice(os.listdir('images'))
+    with open(f'images/{img_name}', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)        
+
+def get_duck_image_url():    
+        url = 'https://random-d.uk/api/random'
+        res = requests.get(url)
+        data = res.json()
+        return data['url']
+    
+    
+@bot.message_handler(commands=['duck'])
+def duck(message):
+    image_url = get_duck_image_url()
+    bot.reply_to(message, image_url)
 
 @bot.message_handler(func=lambda message: True)
 def send_reaction(message):
@@ -43,4 +69,33 @@ def get_reactions(message):
 bot.infinity_polling(allowed_updates=['message', 'message_reaction'])
 
 bot.polling()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
